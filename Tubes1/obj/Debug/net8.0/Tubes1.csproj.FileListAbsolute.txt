@@ -1,0 +1,14 @@
+D:\alpro\Tubes1\bin\Debug\net8.0\Tubes1.exe
+D:\alpro\Tubes1\bin\Debug\net8.0\Tubes1.deps.json
+D:\alpro\Tubes1\bin\Debug\net8.0\Tubes1.runtimeconfig.json
+D:\alpro\Tubes1\bin\Debug\net8.0\Tubes1.dll
+D:\alpro\Tubes1\bin\Debug\net8.0\Tubes1.pdb
+D:\alpro\Tubes1\obj\Debug\net8.0\Tubes1.GeneratedMSBuildEditorConfig.editorconfig
+D:\alpro\Tubes1\obj\Debug\net8.0\Tubes1.AssemblyInfoInputs.cache
+D:\alpro\Tubes1\obj\Debug\net8.0\Tubes1.AssemblyInfo.cs
+D:\alpro\Tubes1\obj\Debug\net8.0\Tubes1.csproj.CoreCompileInputs.cache
+D:\alpro\Tubes1\obj\Debug\net8.0\Tubes1.dll
+D:\alpro\Tubes1\obj\Debug\net8.0\refint\Tubes1.dll
+D:\alpro\Tubes1\obj\Debug\net8.0\Tubes1.pdb
+D:\alpro\Tubes1\obj\Debug\net8.0\Tubes1.genruntimeconfig.cache
+D:\alpro\Tubes1\obj\Debug\net8.0\ref\Tubes1.dll
