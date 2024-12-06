@@ -12,3 +12,4 @@ D:\alpro\Tubes1\obj\Debug\net8.0\refint\Tubes1.dll
 D:\alpro\Tubes1\obj\Debug\net8.0\Tubes1.pdb
 D:\alpro\Tubes1\obj\Debug\net8.0\Tubes1.genruntimeconfig.cache
 D:\alpro\Tubes1\obj\Debug\net8.0\ref\Tubes1.dll
+D:\alpro\Tubes1\obj\Debug\net8.0\Tubes1.sourcelink.json
