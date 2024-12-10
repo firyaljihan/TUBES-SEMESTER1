@@ -10,30 +10,31 @@
 using System;
 public class MyProgram
 {
-    private static string username_0404 = "adminrobusta";
-    private static string password_0404 = "12345";
+    private static string username_0404 = "adminrobusta"; //membuat function set username
+    private static string password_0404 = "12345"; //membuat function set username
+
     public static void Main(string[] args)
     {
-        int pilihan_0404;
-        do
+        int pilihan_0404; //deklarasi variabel pilihan
+        do //tampilkan dlu pilihannya
         {
             Console.WriteLine("===== Robusta Cafe =====");
             Console.WriteLine("1. Login");
             Console.WriteLine("2. Logout");
             Console.Write("Masukkan Pilihan Anda : ");
-            pilihan_0404 = Convert.ToInt32(Console.ReadLine());
+            pilihan_0404 = Convert.ToInt32(Console.ReadLine()); //menerima input pilihan user
 
-            if (pilihan_0404 == 1)
+            if (pilihan_0404 == 1)//jika kondisi pilihan = 1
             {
-                // Input username
+                // input username
                 Console.Write("Masukkan Username: ");
                 string inputUser_0404 = Console.ReadLine();
 
-                // Input password
+                // input password
                 Console.Write("Masukkan Password: ");
                 string inputPassword_0404 = Console.ReadLine();
 
-                // Validasi login
+                // validasi login
                 if (inputUser_0404 == username_0404 && inputPassword_0404 == password_0404)
                 {
                     Console.WriteLine("\nSuccess login! Selamat datang, " + username_0404 + "!");
@@ -49,7 +50,6 @@ public class MyProgram
                         Console.WriteLine("6. Filter Menu");
                         Console.WriteLine("7. Logout");
                         Console.Write("Masukkan Pilihan Menu Anda : ");
-                        // menu_0404 = Convert.ToInt32(Console.ReadLine());
 
                         if (!int.TryParse(Console.ReadLine(), out menu_0404))
                         {
@@ -60,22 +60,22 @@ public class MyProgram
                         switch (menu_0404)
                         {
                             case 1:
-                                Console.WriteLine("Fitur Tambah Menu belum tersedia.");
+                                TambahMenu_0404(); //memanggil function tambahMenu
                                 break;
                             case 2:
-                                Console.WriteLine("Fitur Lihat Menu belum tersedia.");
+                                LihatMenu_0404();
                                 break;
                             case 3:
-                                Console.WriteLine("Fitur Edit Menu belum tersedia.");
+                                EditMenu_0404();
                                 break;
                             case 4:
-                                Console.WriteLine("Fitur Hapus Menu belum tersedia.");
+                                HapusMenu_0404();
                                 break;
                             case 5:
-                                Console.WriteLine("Fitur Cari Menu belum tersedia.");
+                                CariMenu_0404();
                                 break;
                             case 6:
-                                Console.WriteLine("Fitur Filter Menu belum tersedia.");
+                                FilterMenu_0404();
                                 break;
                             case 7:
                                 Console.WriteLine("Anda berhasil logout dari menu.");
@@ -83,9 +83,9 @@ public class MyProgram
                             default:
                                 Console.WriteLine("Pilihan menu tidak valid. Silakan pilih lagi.");
                                 break;
-
                         }
                     } while (menu_0404 != 7);
+
                 }
                 else
                 {
@@ -103,4 +103,59 @@ public class MyProgram
             Console.WriteLine();
         } while (pilihan_0404 != 2);
     }
+
+    private static void TambahMenu_0404()
+    {
+        Console.Write("Tambah nama menu : ");
+        string menuBaru_0404 = Console.ReadLine();
+
+        string kategoriMenu_0404;
+        do{
+            Console.Write("Masukkan kategori menu (Coffee Series/Non-Coffe Series/Dessert Series): ");
+            kategoriMenu_0404 = Console.ReadLine().ToLower(); // convert ke lowercase untuk mempermudah validasi
+
+            if (kategoriMenu_0404 != "coffee series" && kategoriMenu_0404 != "non-coffe series" && kategoriMenu_0404 != "dessert series")
+            {
+                Console.WriteLine("Jenis menu tidak valid. Silakan masukkan 'coffee series' atau 'non-coffe series' atau 'dessert series'.");
+            }
+        } while (kategoriMenu_0404 != "coffee series" && kategoriMenu_0404 != "non-coffe series" && kategoriMenu_0404 != "dessert series");
+
+        // string jenisMenu_0404;
+        // do
+        // {
+        //     Console.Write("Masukkan jenis menu (makanan/minuman): ");
+        //     jenisMenu_0404 = Console.ReadLine()?.ToLower(); // convert ke lowercase untuk mempermudah validasi
+
+        //     if (jenisMenu_0404 != "makanan" && jenisMenu_0404 != "minuman")
+        //     {
+        //         Console.WriteLine("Jenis menu tidak valid. Silakan masukkan 'makanan' atau 'minuman'.");
+        //     }
+        // } while (jenisMenu_0404 != "makanan" && jenisMenu_0404 != "minuman");
+
+        Console.Write("Masukkan harga menu : ");
+        int hargaMenu_0404 = Convert.ToInt32(Console.ReadLine());
+
+    }
+
+    private static void LihatMenu_0404()
+    {
+        Console.Write("Coming soon");
+    }
+    private static void EditMenu_0404()
+    {
+        Console.Write("Coming soon");
+    }
+    private static void HapusMenu_0404()
+    {
+        Console.Write("Coming soon");
+    }
+    private static void CariMenu_0404()
+    {
+        Console.Write("Coming soon");
+    }
+    private static void FilterMenu_0404()
+    {
+        Console.Write("Coming soon");
+    }
+
 }
