@@ -1,0 +1,12 @@
+========= INVOICE ROBUSTA CAFE =========
+Tanggal: 14/12/2024 12:37:38
+----------------------------------------------------------------------
+No.  Nama Menu            Kategori Menu        Harga      Jumlah     Total Harga
+----------------------------------------------------------------------
+1     Expresso             coffee series        Rp28000      4          Rp112000    
+2     Cheese Cake          dessert series       Rp45000      4          Rp180000    
+----------------------------------------------------------------------
+Total Pembayaran                                         Rp292000    
+
+Terima kasih telah berbelanja di Robusta Cafe!
+======================================================================

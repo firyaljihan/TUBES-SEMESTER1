@@ -13,8 +13,7 @@ public class MyProgram
     private static string username_0404 = "adminrobusta"; //membuat function set username
     private static string password_0404 = "12345"; //membuat function set username
     public static string[,] daftarMenu_0404 = new string[100, 3]; // kapasitas awal untuk 100 menu
-    // public static string[] kategori_0404 = new string[100];
-    // public static int[] harga_0404 = new int[100];
+    private static List<string[]> pesanan_0404 = new List<string[]>();
     public static int jumlahMenu_0404 = 0; // penghitung jumlah menu
 
 
@@ -54,9 +53,8 @@ public class MyProgram
                         Console.WriteLine("5. Cari Menu");
                         Console.WriteLine("6. Filter Menu");
                         Console.WriteLine("7. Pesan Menu");
-                        Console.WriteLine("8. Invoice");
                         Console.WriteLine("9. Logout");
-                        Console.Write("Masukkan Pilihan Menu Anda : ");
+                        Console.Write("Masukkan Pilihan Fitur Anda : ");
 
                         if (!int.TryParse(Console.ReadLine(), out fitur_0404))
                         {
@@ -88,16 +86,13 @@ public class MyProgram
                                 Pemesanan_0404();
                                 break;
                             case 8:
-                                Invoice_0404();
-                                break;
-                            case 9:
                                 Console.WriteLine("Anda berhasil logout dari menu.");
                                 break;
                             default:
                                 Console.WriteLine("Pilihan menu tidak valid. Silakan pilih lagi.");
                                 break;
                         }
-                    } while (fitur_0404 != 9);
+                    } while (fitur_0404 != 8);
 
                 }
                 else
@@ -184,7 +179,26 @@ public class MyProgram
 
     private static void LihatMenu_0404()
     {
-        Console.WriteLine("Coming soon");
+        if (jumlahMenu_0404 == 0)
+        {
+            Console.WriteLine("Belum ada menu yang ditambahkan.");
+        }
+        else
+        {
+            Console.WriteLine("\n===================== Daftar Menu =====================");
+            // header tabel
+            Console.WriteLine($"{"No.",-5}{"Nama Menu",-20} {"Kategori Menu",-20} {"Harga",-10}"); //(-20 = lebar karakter)
+            Console.WriteLine(new string('-', 55)); // garis pemisah
+            for (int i = 0; i < jumlahMenu_0404; i++)
+            {
+                // akses data menu menggunakan indeks dua dimensi
+                string namaMenu = daftarMenu_0404[i, 0]; // nama menu
+                string kategoriMenu = daftarMenu_0404[i, 1]; // kategori menu
+                string hargaMenu = daftarMenu_0404[i, 2]; // harga menu
+                Console.WriteLine($"{i + 1,-5} {namaMenu,-20} {kategoriMenu,-20} Rp{hargaMenu,-10}");
+            }
+            Console.WriteLine(new string('-', 55)); // garis pemisah
+        }
     }
 
     private static void EditMenu_0404()
@@ -202,7 +216,7 @@ public class MyProgram
         LihatMenu_0404();
 
         Console.Write("Masukkan nomor menu yang ingin dihapus (1 - {0}): ", jumlahMenu_0404);
-        int nomorMenu = Convert.ToInt32(Console.ReadLine()) - 1; // Mengurangi 1 karena indeks dimulai dari 0
+        int nomorMenu = Convert.ToInt32(Console.ReadLine()) - 1; // mengurangi 1 karena indeks dimulai dari 0
 
         if (nomorMenu < 0 || nomorMenu >= jumlahMenu_0404)
         {
@@ -210,15 +224,15 @@ public class MyProgram
             return;
         }
 
-        // Menggeser elemen-elemen setelah menu yang dihapus
+        // geser elemen-elemen setelah menu yang dihapus
         for (int i = nomorMenu; i < jumlahMenu_0404 - 1; i++)
         {
-            daftarMenu_0404[i, 0] = daftarMenu_0404[i + 1, 0]; // Menggeser nama menu
-            daftarMenu_0404[i, 1] = daftarMenu_0404[i + 1, 1]; // Menggeser kategori menu
-            daftarMenu_0404[i, 2] = daftarMenu_0404[i + 1, 2]; // Menggeser harga menu
+            daftarMenu_0404[i, 0] = daftarMenu_0404[i + 1, 0]; // menggeser nama menu
+            daftarMenu_0404[i, 1] = daftarMenu_0404[i + 1, 1]; // menggeser kategori menu
+            daftarMenu_0404[i, 2] = daftarMenu_0404[i + 1, 2]; // menggeser harga menu
         }
 
-        jumlahMenu_0404--; // Mengurangi jumlah menu setelah penghapusan
+        jumlahMenu_0404--; // mengurangi jumlah menu setelah penghapusan
         Console.WriteLine("Menu berhasil dihapus!");
     }
     private static void CariMenu_0404()
@@ -231,11 +245,99 @@ public class MyProgram
     }
     private static void Pemesanan_0404()
     {
-        Console.Write("Coming soon");
+        pesanan_0404.Clear(); // hapus pesanan sebelumnya
+        if (jumlahMenu_0404 == 0)
+        {
+            Console.WriteLine("Belum ada menu yang tersedia untuk dipesan.");
+            return;
+        }
+        LihatMenu_0404(); //tampilkan menu yang ada
+        bool pesanLagi_0404 = true;
+        while (pesanLagi_0404)
+        {
+            // meminta user memilih menu
+            Console.Write("\nMasukkan nomor menu yang ingin dipesan: ");
+            int nomorMenu_0404 = Convert.ToInt32(Console.ReadLine()) - 1; // kurangi 1 karena indeks dimulai dari 0
+
+            if (nomorMenu_0404 < 0 || nomorMenu_0404 >= jumlahMenu_0404)
+            {
+                Console.WriteLine("Nomor menu tidak valid.");
+                continue;
+            }
+
+            // meminta user jumlah pesanan
+            Console.Write("Masukkan jumlah yang ingin dipesan: ");
+            int jumlahItem_0404 = Convert.ToInt32(Console.ReadLine());
+
+            if (jumlahItem_0404 <= 0)
+            {
+                Console.WriteLine("Jumlah pesanan tidak valid.");
+                continue;
+            }
+
+            // mengambil harga menu yang dipilih pada array daftarmenu berdasarkan nomorMenu
+            int hargaMenu_0404 = Convert.ToInt32(daftarMenu_0404[nomorMenu_0404, 2]);
+
+            // hitung total harga
+            int totalHarga_0404 = hargaMenu_0404 * jumlahItem_0404;
+
+            // simpan pesanan dalam list
+            string[] newOrder_0404 = new string[]
+            {
+            daftarMenu_0404[nomorMenu_0404, 0], // nama menu
+            daftarMenu_0404[nomorMenu_0404, 1], // kategori menu
+            hargaMenu_0404.ToString(), // harga per item
+            jumlahItem_0404.ToString(), // jumlah item
+            totalHarga_0404.ToString() // total harga
+            };
+            pesanan_0404.Add(newOrder_0404); // menambahkan pesanan ke list
+
+            // apakah pengguna ingin menambah pesanan?
+            Console.Write("\nApakah Anda ingin memesan menu lain? (y/n): ");
+            string pilihan_0404 = Console.ReadLine().ToLower();
+            if (pilihan_0404 != "y")
+            {
+                pesanLagi_0404 = false; // jika tidak, keluar dari loop
+            }
+        }
+
+        SimpanInvoice_0404(pesanan_0404); //jalankan func simpan invoice
+
     }
-    private static void Invoice_0404()
+
+    private static void SimpanInvoice_0404(List<string[]> pesanan_0404)
     {
-        Console.Write("Coming soon");
+        // simpan invoice ke dalam file
+        string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+        string filePath = $"invoice_robusta_cafe_{timeStamp}.txt";  // penentuan nama file untuk menyimpan invoice
+
+        using (StreamWriter writer = new StreamWriter(filePath))
+        {
+            // header invoice
+            writer.WriteLine("========= INVOICE ROBUSTA CAFE =========");
+            writer.WriteLine($"Tanggal: {DateTime.Now:dd/MM/yyyy HH:mm:ss}");
+            writer.WriteLine(new string('-', 88)); // garis pemisah
+            writer.WriteLine($"{"No.",-5}{"Nama Menu",-20} {"Kategori Menu",-10} {"Harga",-10} {"Jumlah",-10} {"Total Harga",-10}");
+            writer.WriteLine(new string('-', 88)); // garis pemisah
+
+            // tulis setiap pesanan ke dalam file
+            int totalPembayaran_0404 = 0;
+            for (int i = 0; i < pesanan_0404.Count; i++)
+            {
+                var order_0404 = pesanan_0404[i];
+                writer.WriteLine($"{i + 1,-5} {order_0404[0],-20} {order_0404[1],-10} Rp{order_0404[2],-10} {order_0404[3],-10} Rp{order_0404[4],-10}");
+                totalPembayaran_0404 += Convert.ToInt32(order_0404[4]);
+            }
+
+            // tulis total pembayaran
+            writer.WriteLine(new string('-', 88)); // garis pemisah
+            writer.WriteLine($"Total Pembayaran{"",-40} Rp{totalPembayaran_0404,-10}");
+            writer.WriteLine("\nThanks for your order!");
+            writer.WriteLine(new string('=', 88)); // garis pemisah  
+        }
+
+        // informasikan bahwa invoice telah disimpan ke file
+        Console.WriteLine($"\nInvoice telah disimpan di file '{filePath}'.");
     }
 
 }
