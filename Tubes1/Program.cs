@@ -184,26 +184,7 @@ public class MyProgram
 
     private static void LihatMenu_0404()
     {
-        if (jumlahMenu_0404 == 0)
-        {
-            Console.WriteLine("Belum ada menu yang ditambahkan.");
-        }
-        else
-        {
-            Console.WriteLine("\n=================== Daftar Menu ===================");
-            // Header tabel
-            Console.WriteLine($"{"Nama Menu",-20} {"Kategori Menu",-20} {"Harga",-10}"); //(-20 = lebar karakter)
-            Console.WriteLine(new string('-', 50)); // garis pemisah
-            for (int i = 0; i < jumlahMenu_0404; i++)
-            {
-                // Akses data menu menggunakan indeks dua dimensi
-                string namaMenu = daftarMenu_0404[i, 0]; // Nama menu
-                string kategoriMenu = daftarMenu_0404[i, 1]; // Kategori menu
-                string hargaMenu = daftarMenu_0404[i, 2]; // Harga menu
-                Console.WriteLine($"{namaMenu,-20} {kategoriMenu,-20} Rp{hargaMenu,-10}");
-            }
-            Console.WriteLine(new string('-', 50)); // garis pemisah
-        }
+        Console.WriteLine("Coming soon");
     }
 
     private static void EditMenu_0404()
