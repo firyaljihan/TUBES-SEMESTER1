@@ -53,7 +53,7 @@ public class MyProgram
                         Console.WriteLine("5. Cari Menu");
                         Console.WriteLine("6. Filter Menu");
                         Console.WriteLine("7. Pesan Menu");
-                        Console.WriteLine("9. Logout");
+                        Console.WriteLine("8. Logout");
                         Console.Write("Masukkan Pilihan Fitur Anda : ");
 
                         if (!int.TryParse(Console.ReadLine(), out fitur_0404))
@@ -145,14 +145,14 @@ public class MyProgram
         string kategoriMenu_0404;
         do
         {
-            Console.Write("Masukkan kategori menu (Coffee Series/Non-Coffe Series/Dessert Series): ");
+            Console.Write("Masukkan kategori menu (Coffee Series/Non-Coffee Series/Dessert Series): ");
             kategoriMenu_0404 = Console.ReadLine()?.ToLower(); // convert ke lowercase untuk mempermudah validasi
 
-            if (kategoriMenu_0404 != "coffee series" && kategoriMenu_0404 != "non-coffe series" && kategoriMenu_0404 != "dessert series")
+            if (kategoriMenu_0404 != "coffee series" && kategoriMenu_0404 != "non-coffee series" && kategoriMenu_0404 != "dessert series")
             {
-                Console.WriteLine("Jenis menu tidak valid. Silakan masukkan 'coffee series' atau 'non-coffe series' atau 'dessert series'.");
+                Console.WriteLine("Jenis menu tidak valid. Silakan masukkan 'coffee series' atau 'non-coffee series' atau 'dessert series'.");
             }
-        } while (kategoriMenu_0404 != "coffee series" && kategoriMenu_0404 != "non-coffe series" && kategoriMenu_0404 != "dessert series");
+        } while (kategoriMenu_0404 != "coffee series" && kategoriMenu_0404 != "non-coffee series" && kategoriMenu_0404 != "dessert series");
 
 
         Console.Write("Masukkan harga menu : ");
@@ -203,7 +203,36 @@ public class MyProgram
 
     private static void EditMenu_0404()
     {
-        Console.Write("Coming soon");
+        if (jumlahMenu_0404 == 0)
+        {
+            Console.WriteLine("Anda belum menambahkan menu.");
+            return;
+        }
+
+        LihatMenu_0404();
+        
+        Console.Write("Masukkan nomor menu yang ingin Anda edit : ");
+        if (!int.TryParse(Console.ReadLine(), out int nomorMenu_0404) || nomorMenu_0404 < 1 || nomorMenu_0404 > jumlahMenu_0404)
+        {
+            Console.WriteLine("Maaf, nomor menu yang Anda inputkan tidak valid.");
+            return;
+        }
+        
+        Console.Write("Masukkan nama baru untuk menu : ");       // Input nama menu baru dari username_04
+        string namaBaru = Console.ReadLine();
+
+        Console.Write("Masukkan kategori baru untuk menu : ");   // Input kategori menu baru dari username_04
+        string kategoriBaru = Console.ReadLine();
+
+        Console.Write("Masukkan harga baru untuk menu : ");      // Input harga menu baru dari username_04
+        string hargaBaru = Console.ReadLine();
+
+        // Update menu di posisi yang dipilih
+        daftarMenu_0404[nomorMenu_0404 - 1, 0] = namaBaru;      // Nama menu
+        daftarMenu_0404[nomorMenu_0404 - 1, 1] = kategoriBaru;  // Kategori menu
+        daftarMenu_0404[nomorMenu_0404 - 1, 2] = hargaBaru;     // Harga menu
+
+        Console.WriteLine("Menu berhasil diupdate!");
     }
     private static void HapusMenu_0404()
     {
@@ -237,11 +266,91 @@ public class MyProgram
     }
     private static void CariMenu_0404()
     {
-        Console.Write("Coming soon");
+        if (jumlahMenu_0404 == 0)
+        {
+            Console.WriteLine("Belum ada menu yang tersedia untuk dicari.");
+            return;
+        }
+
+        Console.Write("Masukkan nama menu yang dicari: ");
+        string keyword = Console.ReadLine().ToLower(); // konversi ke huruf kecil untuk mempermudah pencarian
+
+        bool ditemukan = false;
+        Console.WriteLine("\nHasil Pencarian:");
+        Console.WriteLine($"{"No.",-5}{"Nama Menu",-20}{"Kategori Menu",-20}{"Harga",-10}");
+        Console.WriteLine(new string('-', 55)); // garis pemisah
+
+        for (int i = 0; i < jumlahMenu_0404; i++)
+        {
+            if (daftarMenu_0404[i, 0].ToLower().Contains(keyword))
+            {
+                Console.WriteLine($"{i + 1,-5}{daftarMenu_0404[i, 0],-20}{daftarMenu_0404[i, 1],-20}Rp{daftarMenu_0404[i, 2],-10}");
+                ditemukan = true;
+            }
+        }
+
+        if (!ditemukan)
+        {
+            Console.WriteLine("Menu tidak tersedia");
+        }
+
+        Console.WriteLine(new string('-', 55)); // garis pemisah
     }
     private static void FilterMenu_0404()
     {
-        Console.Write("Coming soon");
+        if (jumlahMenu_0404 == 0)
+        {
+            Console.WriteLine("Belum ada menu yang tersedia untuk difilter.");
+            return;
+        }
+
+        Console.WriteLine("-- Filter Menu Berdasarkan Kategori --");
+        Console.WriteLine("Pilih kategori yang ingin ditampilkan:");
+        Console.WriteLine("1. Coffee Series");
+        Console.WriteLine("2. Non-Coffee Series");
+        Console.WriteLine("3. Dessert Series");
+
+        Console.Write("Masukkan pilihan kategori (1-3): ");
+        string pilihanKategori = Console.ReadLine();
+
+        string kategoriFilter = "";
+        switch (pilihanKategori)
+        {
+            case "1":
+                kategoriFilter = "coffee series";
+                break;
+            case "2":
+                kategoriFilter = "non-coffee series";
+                break;
+            case "3":
+                kategoriFilter = "dessert series";
+                break;
+            default:
+                Console.WriteLine("Pilihan tidak valid. Silakan masukkan angka 1-3.");
+                return;
+        }
+
+        // Filter menu berdasarkan kategori yang dipilih
+        Console.WriteLine($"\nMenampilkan menu untuk kategori: {kategoriFilter.ToUpper()}");
+        Console.WriteLine($"{"No.",-5}{"Nama Menu",-20}{"Kategori Menu",-20}{"Harga",-10}");
+        Console.WriteLine(new string('-', 55));
+
+        bool ditemukan = false;
+        for (int i = 0; i < jumlahMenu_0404; i++)
+        {
+            if (daftarMenu_0404[i, 1].ToLower() == kategoriFilter)
+            {
+                Console.WriteLine($"{i + 1,-5}{daftarMenu_0404[i, 0],-20}{daftarMenu_0404[i, 1],-20}Rp{daftarMenu_0404[i, 2],-10}");
+                ditemukan = true;
+            }
+        }
+
+        if (!ditemukan)
+        {
+            Console.WriteLine($"Tidak ada menu dalam kategori '{kategoriFilter}'.");
+        }
+
+        Console.WriteLine(new string('-', 55));
     }
     private static void Pemesanan_0404()
     {
@@ -305,13 +414,13 @@ public class MyProgram
 
     }
 
-    private static void SimpanInvoice_0404(List<string[]> pesanan_0404)
+    private static void SimpanInvoice_0404(List<string[]> pesanan_0404) //menerima parameter berupa List<string[]> dari pesanan_0404
     {
         // simpan invoice ke dalam file
         string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         string filePath = $"invoice_robusta_cafe_{timeStamp}.txt";  // penentuan nama file untuk menyimpan invoice
 
-        using (StreamWriter writer = new StreamWriter(filePath))
+        using (StreamWriter writer = new StreamWriter(filePath)) //streamWriter: Digunakan untuk menulis teks ke file
         {
             // header invoice
             writer.WriteLine("========= INVOICE ROBUSTA CAFE =========");
