@@ -1,11 +1,12 @@
 ========= INVOICE ROBUSTA CAFE =========
-Tanggal: 17/12/2024 08:52:45
+Tanggal: 30/12/2024 14:41:34
 ----------------------------------------------------------------------------------------
 No.  Nama Menu            Kategori Menu Harga      Jumlah     Total Harga
 ----------------------------------------------------------------------------------------
-1     Nasi Goreng          dessert series Rp1000       2          Rp2000      
+1     Americano            coffee series Rp45000      3          Rp135000    
+2     Tiramisu cake        dessert series Rp38000      2          Rp76000     
 ----------------------------------------------------------------------------------------
-Total Pembayaran                                         Rp2000      
+Total Pembayaran                                         Rp211000    
 
 Thanks for your order!
 ========================================================================================

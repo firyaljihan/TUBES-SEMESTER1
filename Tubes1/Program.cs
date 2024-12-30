@@ -155,6 +155,7 @@ public class MyProgram
         Console.Write("Tambah nama menu : ");
         string namaMenu_0404 = Console.ReadLine();
 
+
         string kategoriMenu_0404;
         do
         {
@@ -186,9 +187,9 @@ public class MyProgram
 
         if (jumlahMenu_0404 < daftarMenu_0404.GetLength(0))
         /*jika jumlahMenu_0404 lebih kecil dari 
-        kapasitas array (menu_0404.Length), maka data baru masih bisa ditambahkan.*/
+        kapasitas array, maka data baru masih bisa ditambahkan.*/
         {
-            daftarMenu_0404[jumlahMenu_0404, 0] = namaMenu_0404; //masukkan nama menu ke array menu_0404
+            daftarMenu_0404[jumlahMenu_0404, 0] = namaMenu_0404; //masukkan nama menu ke array daftarMenu_0404
             daftarMenu_0404[jumlahMenu_0404, 1] = kategoriMenu_0404;
             daftarMenu_0404[jumlahMenu_0404, 2] = hargaMenu_0404.ToString();
 
@@ -253,8 +254,18 @@ public class MyProgram
         Console.Write("Masukkan nama baru untuk menu : ");       // Input nama menu baru dari username_04
         string namaBaru_0404 = Console.ReadLine();
 
-        Console.Write("Masukkan kategori baru untuk menu : ");   // Input kategori menu baru dari username_04
-        string kategoriBaru_0404 = Console.ReadLine();
+        // Console.Write("Masukkan kategori baru untuk menu : ");   // Input kategori menu baru dari username_04
+        string kategoriBaru_0404;
+        do
+        {
+            Console.Write("Masukkan kategori menu (Coffee Series/Non-Coffee Series/Dessert Series): ");
+            kategoriBaru_0404 = Console.ReadLine()?.ToLower(); // convert ke lowercase untuk mempermudah validasi
+
+            if (kategoriBaru_0404 != "coffee series" && kategoriBaru_0404 != "non-coffee series" && kategoriBaru_0404 != "dessert series")
+            {
+                Console.WriteLine("Jenis menu tidak valid. Silakan masukkan 'coffee series' atau 'non-coffee series' atau 'dessert series'.");
+            }
+        } while (kategoriBaru_0404 != "coffee series" && kategoriBaru_0404 != "non-coffee series" && kategoriBaru_0404 != "dessert series");
 
         Console.Write("Masukkan harga baru untuk menu : ");      // Input harga menu baru dari username_04
         string hargaBaru_0404 = Console.ReadLine();
@@ -277,16 +288,16 @@ public class MyProgram
         LihatMenu_0404();
 
         Console.Write("Masukkan nomor menu yang ingin dihapus (1 - {0}): ", jumlahMenu_0404);
-        string input = Console.ReadLine();
+        string input_0404 = Console.ReadLine();
 
         // Validasi input
-        if (int.TryParse(input, out int nomorMenu) && nomorMenu >= 1 && nomorMenu <= jumlahMenu_0404)
+        if (int.TryParse(input_0404, out int nomorMenu_0404) && nomorMenu_0404 >= 1 && nomorMenu_0404 <= jumlahMenu_0404)
         {
             // Konversi nomor menu ke indeks array (indeks mulai dari 0)
-            int indexMenu = nomorMenu - 1;
+            int indexMenu_0404 = nomorMenu_0404 - 1;
 
             // Geser elemen-elemen setelah menu yang dihapus
-            for (int i = nomorMenu; i < jumlahMenu_0404 - 1; i++)
+            for (int i = indexMenu_0404; i < jumlahMenu_0404 - 1; i++)
             {
                 daftarMenu_0404[i, 0] = daftarMenu_0404[i + 1, 0]; // Menggeser nama menu
                 daftarMenu_0404[i, 1] = daftarMenu_0404[i + 1, 1]; // Menggeser kategori menu
